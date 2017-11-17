@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>阴阳师</title>
+	<link rel="stylesheet" type="text/css" href="css/yinyangshi.css">
+</head>
+<body>
+	<div class="side-big">
+	 <p></p>
+	  <em>0%</em>
+		<div class="center">
+		    <div class="door1"></div>
+			<div class="door2"></div>
+		    <div class="flower"></div>
+		  	<div class="toflower"></div>
+		    <div class="cloud1"></div>
+		    <div class="cloud2"></div>
+		    <div class="person"></div>
+		    <div class="logo"></div>
+		    <div class="slogon">
+		    	<div class="index_z"></div>
+		    	<div class="index_y"></div>
+		    </div>
+		    <div class="code-father">
+		    	<div class="code">
+		    		<div class="scan"></div>
+		    	</div>
+		    	<div class="ios"><div class="io-s"></div></div>
+		    	<div class="adro"><div class="ad-ro"></div></div>
+		    </div>
+		    <div class="yinhua"></div>
+		    <div class="lefthua"></div>
+		    <canvas id="myCanvas" width="1920" height="1120">您的浏览器不支持Canvas元素</canvas>
+		</div>
+	</div>
+
+  
+	<div class="zhe"></div>
+
+	<script type="text/javascript">
+ var canvas = document.getElementById("myCanvas");
+ var context = canvas.getContext("2d");
+ var practicles = [];
+ for (var i = 0; i < 500; i++) {//循环生成500粒
+ practicles.push({
+ x: Math.random()*(window.innerWidth),
+ y: Math.random()*(window.innerHeight),
+ vx: Math.random()-0.5,
+ vy: Math.random()+0.5,
+ size: Math.random()*3+1,
+ color: "#FFF"
+ })
+ }
+ function timeUpdate(){
+ context.clearRect(0,0,window.innerWidth,window.innerHeight);//清除画布区域
+ var practicle;
+ for (var i = 0; i < 500; i++) {
+ var practicle = practicles[i];
+ practicle.x += practicles[i].vx;
+ practicle.y += practicles[i].vy;
+ if (practicle.x<0) {practicle.x=window.innerWidth}
+ if (practicle.x>window.innerWidth) {practicle.x=0}
+ if (practicle.y>window.innerHeight) {practicle.y=0}
+ context.beginPath();
+ context.arc(practicle.x,practicle.y,practicle.size,0,Math.PI*2)
+ context.closePath();
+ context.fillStyle = practicle.color;
+ context.fill();
+ }
+ }
+ setInterval(timeUpdate,40);
+ </script>
+</body>
+</html>
